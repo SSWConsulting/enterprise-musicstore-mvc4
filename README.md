@@ -1,7 +1,7 @@
-enterprise-music-store
-======================
+SSW.Training.MusicStore.Enterprise
+==================================
 
-The Enterprise Music Store takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
+The SSW Enterprise Music Store takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
 
 The original music store application can be found here
 <a href="http://mvcmusicstore.codeplex.com/" target="_new">http://mvcmusicstore.codeplex.com/</a>
