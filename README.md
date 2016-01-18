@@ -1,7 +1,7 @@
-ssw-musicstore-enterprise-mvc4
+SSW Enterprise Music Store MVC 4
 ==================================
 
-The SSW Music Store Enterprise MVC4 takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
+The SSW Enterprise Music Store MVC 4 takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
 
 The original music store application can be found here
 <a href="http://mvcmusicstore.codeplex.com/" target="_new">http://mvcmusicstore.codeplex.com/</a>
