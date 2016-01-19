@@ -3,7 +3,7 @@
 namespace Northwind.Common.Tests.Unit
 {
     [TestFixture]
-    public class StringValidationTestsNUnit
+    public class StringValidationNUnitTests
     {
         [TestCase("adam@domain.com", Description = "Valid simple email")]
         [TestCase("adam-stephensen@domain-name.com", Description = "Valid email can contain hypens")]

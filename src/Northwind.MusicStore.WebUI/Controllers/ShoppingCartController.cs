@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Northwind.MusicStore.RepositoryInterfaces;
-using Northwind.MusicStore.RepositoryInterfaces;
 using Northwind.MusicStore.WebUI.Models;
 using Northwind.MusicStore.WebUI.ViewModels;
 
@@ -31,7 +30,7 @@ namespace MvcMusicStore.Controllers
         {
             var cart = _shoppingCartFactory.GetCart(this.HttpContext);
 
-            // Set up our ViewModel
+            // Configure our ViewModel
             var viewModel = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),

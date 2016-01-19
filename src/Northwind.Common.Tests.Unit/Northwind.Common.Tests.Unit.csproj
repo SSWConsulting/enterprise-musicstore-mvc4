@@ -64,7 +64,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="StringValidationTestsNUnit.cs" />
+    <Compile Include="StringValidationNUnitTests.cs" />
     <Compile Include="StringValidationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
