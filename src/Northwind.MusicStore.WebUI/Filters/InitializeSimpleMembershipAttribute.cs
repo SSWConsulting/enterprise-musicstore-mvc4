@@ -61,9 +61,13 @@ namespace Northwind.MusicStore.WebUI.Filters
                     }
 
                 }
-                catch (Exception ex)
+                catch (InvalidOperationException ex)
                 {
                     throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    throw new ArgumentNullException("The ASP.NET Simple Membership database could not identify an Administrator. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
             }
         }

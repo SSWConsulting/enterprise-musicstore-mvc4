@@ -189,11 +189,11 @@ namespace Northwind.MusicStore.WebUI.Controllers
                     {
                         changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, viewModel.OldPassword, viewModel.NewPassword);
                     }
-                    catch (Exception)
+                    //CodeAuditor # - Ignore the next line. Specific exception irrelevant, used to declare variable
+                    catch (Exception) 
                     {
                         changePasswordSucceeded = false;
                     }
-
                     if (changePasswordSucceeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -221,7 +221,11 @@ namespace Northwind.MusicStore.WebUI.Controllers
                         WebSecurity.CreateAccount(User.Identity.Name, viewModel.NewPassword);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    catch (Exception e)
+                    catch (MembershipCreateUserException e)
+                    {
+                        ModelState.AddModelError("", e);
+                    }
+                    catch (InvalidOperationException e)
                     {
                         ModelState.AddModelError("", e);
                     }
