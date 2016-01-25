@@ -219,13 +219,19 @@ namespace Northwind.MusicStore.WebUI.Controllers
                     try
                     {
                         WebSecurity.CreateAccount(User.Identity.Name, viewModel.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("Manage", new {Message = ManageMessageId.SetPasswordSuccess});
                     }
                     catch (MembershipCreateUserException e)
                     {
                         ModelState.AddModelError("", e);
                     }
                     catch (InvalidOperationException e)
+                    {
+                        ModelState.AddModelError("", e);
+                        
+                    }
+                    //CodeAuditor # - Generic exception is required to catch all errors and report to UI
+                    catch (Exception e)
                     {
                         ModelState.AddModelError("", e);
                     }
