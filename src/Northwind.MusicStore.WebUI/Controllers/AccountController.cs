@@ -28,9 +28,9 @@ namespace Northwind.MusicStore.WebUI.Controllers
 
         public AccountController(IShoppingCartFactory shoppingCartFactory, IWebSecurityProvider webSecurityProvider, ISessionProvider sessionProvider)
         {
-            if (shoppingCartFactory == null) throw new InvalidOperationException("Shopping Cart Factory cannot be null");
-            if (webSecurityProvider == null) throw new InvalidOperationException("Web Security Provider cannot be null");
-            if (sessionProvider == null) throw new InvalidOperationException("Session Provider cannot be null");
+            if (shoppingCartFactory == null) { throw new InvalidOperationException("Shopping Cart Factory cannot be null"); }
+            if (webSecurityProvider == null) { throw new InvalidOperationException("Web Security Provider cannot be null"); }
+            if (sessionProvider == null) {throw new InvalidOperationException("Session Provider cannot be null");}
             _shoppingCartFactory = shoppingCartFactory;
             _webSecurityProvider = webSecurityProvider;
             _sessionProvider = sessionProvider;
@@ -138,7 +138,7 @@ namespace Northwind.MusicStore.WebUI.Controllers
             // Only disassociate the account if the currently logged in user is the owner
             if (ownerAccount == User.Identity.Name)
             {
-                // Use a transaction to prevent the user from deleting their last login credential
+                // Use a transaction to prevent the user from deleting their last log in credential
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
                 {
                     bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
@@ -162,7 +162,7 @@ namespace Northwind.MusicStore.WebUI.Controllers
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.RemoveLoginSuccess ? "The external log in was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
@@ -189,11 +189,11 @@ namespace Northwind.MusicStore.WebUI.Controllers
                     {
                         changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, viewModel.OldPassword, viewModel.NewPassword);
                     }
-                    catch (Exception)
+                    //CodeAuditor # - Ignore the next line. Specific exception irrelevant, used to declare variable
+                    catch (Exception) 
                     {
                         changePasswordSucceeded = false;
                     }
-
                     if (changePasswordSucceeded)
                     {
                         return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -221,7 +221,11 @@ namespace Northwind.MusicStore.WebUI.Controllers
                         WebSecurity.CreateAccount(User.Identity.Name, viewModel.NewPassword);
                         return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    catch (Exception e)
+                    catch (MembershipCreateUserException e)
+                    {
+                        ModelState.AddModelError("", e);
+                    }
+                    catch (InvalidOperationException e)
                     {
                         ModelState.AddModelError("", e);
                     }
@@ -407,13 +411,13 @@ namespace Northwind.MusicStore.WebUI.Controllers
                     return "User name already exists. Please enter a different user name.";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "A user name for that email address already exists. Please enter a different email address.";
 
                 case MembershipCreateStatus.InvalidPassword:
                     return "The password provided is invalid. Please enter a valid password value.";
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
+                    return "The email address provided is invalid. Please check the value and try again.";
 
                 case MembershipCreateStatus.InvalidAnswer:
                     return "The password retrieval answer provided is invalid. Please check the value and try again.";

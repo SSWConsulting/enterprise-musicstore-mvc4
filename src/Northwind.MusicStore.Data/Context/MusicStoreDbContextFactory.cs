@@ -1,14 +1,14 @@
 ﻿using Northwind.MusicStore.Data.EntityConfig;
+using System;
 
 namespace Northwind.MusicStore.Data.Context
-{
-    public class MusicStoreDbContextFactory : IDbContextFactory
+{    public class MusicStoreDbContextFactory : IDbContextFactory
     {
         private MusicStoreDbContext _context;
 
         public MusicStoreDbContext Get()
         {
-            if (_context == null) InitialiseContext();
+            if (_context == null) { InitialiseContext(); };
 
             return _context;
         }
