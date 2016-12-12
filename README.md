@@ -1,5 +1,7 @@
-SSW Enterprise Music Store MVC 4
-==================================
+# SSW Enterprise Music Store MVC 4
+
+## Warning: This project is no longer maintained
+
 
 The SSW Enterprise Music Store MVC 4 takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
 
