@@ -2,7 +2,10 @@
 
 ## Warning: This project is no longer maintained
 
+Replaced by the [Enterprise Angular 2 Music Store](https://github.com/SSWConsulting/enterprise-musicstore-ui-angular2).
 
+
+## About the Music Store
 The SSW Enterprise Music Store MVC 4 takes the MvcMusicStore sample from ASP.Net and adds Dependency Injection, Unit Tests and a more maintainable architecture.
 
 The original music store application can be found here
